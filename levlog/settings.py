@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-i+@ow^_9+qwgc6zoxghlzh%%i$+l@e8pq$3v*hp&w#93ku-5-&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'levlog.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'levlog.herokuapp.com']
 
 
 # Application definition
