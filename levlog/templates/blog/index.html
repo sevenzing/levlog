@@ -1,0 +1,89 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="head-section">
+    <div class="container">
+     <div class="row p-5">
+         <div class="col align-self-center">
+             <h1 class="font-weight-bold">Мой блог 🔎</h1>
+             <h2 class="text-secondary font-weight-lighter">и немного мемов</h2>
+         </div>
+         <div class="col align-self-center">
+             <img src="{% static 'blog/img/head-img.png' %}" class="img-fluid">
+         </div>
+     </div>
+    </div>
+</div>
+<!-- CONTENT -->
+
+{% for post in post_list %} 
+  {% if forloop.first  %}
+    <div class="container mt-5">
+      <div class="card mb-3 shadow-sm">
+          <div class="row">
+            <div class="col-md-8 align-self-center">
+              <div class="card-body">
+                <h3 class="card-title font-weight-bold">{{ post.title }}</h3>
+                <p class="card-text">{{ post.short_description | safe }}</p>
+                <p class="card-text"><small class="text-dark">Posted {{ post.created_on | date:"j M" }}</small></p>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-link float-right text-dark font-weight-bold">Read more</a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <img src="{{ post.preview_image.box.url }}" class="card-img" alt="...">
+            </div>
+          </div>
+        </div>
+    </div>
+
+  {% elif forloop.last %}
+  <div class="container mt-4 bg-latest">
+    <div class="row">
+     <div class="col align-self-center p-5">
+         <h3 class="card-title font-weight-bold">{{ post.title }}</h3>
+         <p class="card-text">{{ post.short_description | safe }}</p>
+         <a href="{{ post.get_absolute_url }}" class="btn btn-link float-right text-dark font-weight-bold">Read more</a>
+      </div>
+      <div class="col p-0">
+          <img src="{{ post.preview_image.small.url }}" class="img-fluid">
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+    {% if forloop.counter0 == 1 %}
+      <div class="container mt-4">
+        <div class="row">
+    {% endif%}
+
+    <div class="col-md-4">
+      <div class="card shadow-sm" style="height: 38rem">
+          <img src="{{ post.preview_image.small.url }}" class="card-img-top" alt="...">
+          <div class="card-body d-flex flex-column">
+            <div style="flex: 1 1 auto;">
+              <h5 class="card-title font-weight-bold">{{ post.title }}</h5>
+              <p class="card-text">{{ post.short_description | safe }}</p>
+            </div>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-link float-right text-dark font-weight-bold">Read more</a>
+          </div>
+        </div>
+    </div>          
+
+    {% if forloop.counter0 == 3 %}
+        </div>
+      </div>
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}
+
+<div class="container mt-2">
+    <a class="btn btn-more float-right text-light mt-3" href="{% url 'blog.all_posts' %}">See more <i class="ri-arrow-up-circle-fill"></i></a>
+</div>
+
+
+{% endblock %}

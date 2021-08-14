@@ -1,2 +1,2 @@
-from .post import Post
+from .post import Post, PostView
 from .user import User

@@ -1,8 +1,21 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
+from django.urls import reverse
 from django.utils.translation import gettext as _
 from tinymce.models import HTMLField
+from stdimage import StdImageField
+
+class PostManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().order_by('-rating', '-created_on')
+
+
+class AvaliablePostManager(PostManager):
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            ~Q(status__in=[Post.Status.DELETED, Post.Status.HIDDEN])
+        )
 
 
 class Post(models.Model):
@@ -21,14 +34,51 @@ class Post(models.Model):
         verbose_name=_('author'),
     )
     
+    preview_image = StdImageField(
+        upload_to='uploads/%Y/%m/%d/', 
+        null=True,
+        variations={
+            'cropped': {'width': 1000, 'height': 400, 'crop': True},
+            'small': {'width': 400, 'height': 400},
+            'box' : {'width': 400, 'height': 400, 'crop': True}
+        },
+        verbose_name=_('preview'),
+    )
     updated_on = models.DateTimeField(auto_now=True, verbose_name=_('last update'))
+    
+    short_description = HTMLField(verbose_name=_('short'), null=True)
+    emoji_description = models.CharField(max_length=10, verbose_name=_('emoji'), null=True)
     content = HTMLField(verbose_name=_('content'))
+
     created_on = models.DateTimeField(auto_now_add=True, verbose_name=_('creation time'))
     status = models.IntegerField(choices=Status.choices, default=Status.DRAFT, verbose_name=_('status'))
-    views = models.IntegerField(default=0, verbose_name=_('views'))
+    
+    rating = models.IntegerField(default=1, verbose_name=_('rating'))
 
-    class Meta:
-        ordering = ['-created_on']
+    objects = PostManager()
+    avaliable_objects = AvaliablePostManager()
+
+    @property
+    def views(self):
+        """
+        Amount of views is amount if unique ips that accessed that post
+        """
+        return PostView.objects.filter(post=self).count()
+
+    def get_absolute_url(self):
+        return reverse('blog.post_view', args=(self.slug,))
 
     def __str__(self):
-        return f"{self.title}({self.views})"
+        return f'{self.title}({self.views})'
+
+
+class PostView(models.Model):
+    ip = models.GenericIPAddressField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('post view')
+        verbose_name_plural = _('post views')
+
+    def __str__(self):
+        return f'{self.ip} in {self.post}'

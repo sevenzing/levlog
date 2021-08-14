@@ -1,0 +1,119 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
+    <title>levlog</title>
+  </head>
+  <body>
+   <!-- NAVIGATION -->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand font-weight-bold" href="{% url 'levlog.index' %}">
+          <img src="{% static 'blog/img/logo.png' %}" class="img-fluid">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active mr-3">
+              <a class="nav-link" href="{% url 'blog.home_view' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item mr-3">
+              <a class="nav-link" href="{% url 'blog.all_posts' %}">Posts</a>
+            </li>
+            <li class="nav-item mr-3">
+              <a class="nav-link" href="{% url 'blog.random_post' %}">Random post</a>
+            </li>
+            <li class="nav-item mt-2 mr-3">
+                <a class="text-dark" href="https://www.instagram.com/donotshareit/"><i class="ri-instagram-fill"></i></a>
+              </li>
+            <li class="nav-item mt-2 mr-3">
+                <a class="text-dark" href="https://t.me/sevenzing"><i class="ri-telegram-fill"></i></i></a>
+              </li>
+              <li class="nav-item mt-2 mr-3">
+                <a class="text-dark" href="https://github.com/sevenzing/"><i class="ri-github-fill"></i></a>
+                
+              </li>
+          </ul>
+        </div>
+      </nav>
+</div>
+
+   <!-- NAVIGATION END -->
+   
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- FOOTER -->
+    <br><br><br><br><br>
+
+    <footer class="text-center text-white" style="background-color: #f1f1f1;">
+      <!-- Grid container -->
+      <div class="container pt-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Instagram -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="https://www.instagram.com/donotshareit/"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="ri-instagram-fill"></i
+          ></a>
+
+          <!-- Telegram -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="https://t.me/sevenzing"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="ri-telegram-fill"></i
+          ></a>
+
+          <!-- Github -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="https://github.com/sevenzing/"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="ri-github-fill"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyleft:
+        <a class="text-dark" href="https://mdbootstrap.com/">levlog.kek</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[rel='tooltip']").tooltip();
+        });
+    </script>
+  </body>
+</html>

@@ -119,3 +119,5 @@ GitHub.sublime-settings
 .postgres_data/
 
 .DS_Store
+
+staticfiles
