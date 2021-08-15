@@ -14,12 +14,11 @@ from pathlib import Path
 import environ
 
 
-env = environ.Env()
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+env.read_env(open(BASE_DIR / '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -30,13 +29,16 @@ SECRET_KEY = 'django-insecure-i+@ow^_9+qwgc6zoxghlzh%%i$+l@e8pq$3v*hp&w#93ku-5-&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'levlog.herokuapp.com']
+LOCAL_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
+
+ALLOWED_HOSTS = ['levlog.herokuapp.com'] + LOCAL_HOSTS
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'jet',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,6 +144,17 @@ WHITENOISE_USE_FINDERS = True
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# S3 Settings
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+AWS_S3_FILE_OVERWRITE = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 # TinyMCE
