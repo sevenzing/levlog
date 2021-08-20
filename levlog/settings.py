@@ -36,9 +36,14 @@ SECRET_KEY = 'django-insecure-i+@ow^_9+qwgc6zoxghlzh%%i$+l@e8pq$3v*hp&w#93ku-5-&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-LOCAL_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
 
-ALLOWED_HOSTS = ['levlog.herokuapp.com'] + LOCAL_HOSTS
+# Allowed hosts
+
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
+
+SITE_DOMAIN = env('SITE_DOMAIN').lstrip('www.')
+if SITE_DOMAIN:
+    ALLOWED_HOSTS += [SITE_DOMAIN, 'www.' + SITE_DOMAIN]
 
 
 # Application definition
