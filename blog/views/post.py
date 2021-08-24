@@ -1,9 +1,14 @@
 from blog.models import Post, PostView
 from blog.views.utils import get_client_ip
 
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView, UpdateView
 from django.shortcuts import redirect
 from django.http import HttpRequest
+
+
+def random_post(request):
+    object = Post.avaliable_objects.order_by('?').first()
+    return redirect(object)
 
 
 class PostDetailView(DetailView):
@@ -26,6 +31,13 @@ class PostDetailView(DetailView):
             )
 
 
-def random_post(request):
-    object = Post.avaliable_objects.order_by('?').first()
-    return redirect(object)
+class PostCreateView(CreateView):
+    model = Post
+    fields = '__all__'
+    template_name = 'blog/new.html'
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = '__all__'
+    #template_name = 'blog/edit.html'

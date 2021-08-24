@@ -8,6 +8,8 @@ urlpatterns = [
     path('p/<str:slug>/', views.PostDetailView.as_view(), name='blog.post_view'),
     path('random/', views.random_post, name='blog.random_post'),
     path('all', views.AllPostsView.as_view(), name='blog.all_posts'),
+    path('new/', views.PostCreateView.as_view(), name='blog.new'),
+    path('edit/<str:slug>/', views.PostUpdateView.as_view(), name='blog.edit'), 
 ]
 
 

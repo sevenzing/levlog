@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 from tinymce.models import HTMLField
 from stdimage import StdImageField
 
+
 class PostManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().order_by('-rating', '-created_on')
@@ -54,6 +55,14 @@ class Post(models.Model):
     status = models.IntegerField(choices=Status.choices, default=Status.DRAFT, verbose_name=_('status'))
     
     rating = models.IntegerField(default=1, verbose_name=_('rating'))
+    category = models.ForeignKey(
+        to='blog.category', 
+        on_delete=models.CASCADE,
+        verbose_name=_('category'),
+        null=True,
+        blank=True,
+    )
+
 
     objects = PostManager()
     avaliable_objects = AvaliablePostManager()
