@@ -19,34 +19,19 @@
 
 
     <script>
-        let is_mac = /(Mac|iPhone|iPod|iPad|)/i.test(navigator.platform);
+        let is_mac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
         if (!is_mac) {
-            window.onload = function() {    
+            window.onload = function() {
               // Parses the document body and    
-              // inserts <img> tags in place of Unicode Emojis    
-              twemoji.parse(document.body, 
+              // inserts <img> tags in place of Unicode Emojis
+              twemoji.parse(document.body,
                       {folder: 'svg', ext: '.svg'}
               );
-
           }
         }
         
     </script>
 
-    <style>
-        img.emoji {
-            /* Since we are using SVGs, you have to change the width using CSS */
-            width:1.5em;
-
-            /* 
-            This is to make the emojis feel like actual emojis to 
-            the user and they won't act like images. This makes the emojis
-            non-reactive to any mouse events such as dragging, 
-            hovering, clicking etc. Makes it feel like its actual text.
-            */
-            pointer-events: none; 
-        }
-    </style>
 
   </head>
   <body>

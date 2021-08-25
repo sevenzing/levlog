@@ -2,6 +2,11 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+img.emoji {
+  width:1.5em;
+  pointer-events: none; 
+}
+
 p {
   color: #718096;
 }
@@ -58,5 +63,6 @@ h6 {
   color: white;
 }
 
-
-/*# sourceMappingURL=main.css.map */
+.blog-content p {
+  color: #525c69;
+}
