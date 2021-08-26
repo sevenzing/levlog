@@ -14,8 +14,14 @@ def random_post(request):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post.html'
-    queryset = Post.avaliable_objects
 
+
+    def get_queryset(self):
+        if self.request.user.is_staff:
+            return Post.objects
+        else:
+            return Post.avaliable_objects
+    
 
     def get(self, request: HttpRequest, *args, **kwargs):           
         response = super().get(request, *args, **kwargs)
