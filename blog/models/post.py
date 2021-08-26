@@ -15,7 +15,7 @@ class PostManager(models.Manager):
 class AvaliablePostManager(PostManager):
     def get_queryset(self):
         return super().get_queryset().filter(
-            ~Q(status__in=[Post.Status.DELETED, Post.Status.HIDDEN])
+            status=Post.Status.PUBLISHED
         )
 
 
