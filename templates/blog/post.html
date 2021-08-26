@@ -9,7 +9,11 @@
     </div>
 </div>
 <div class="container mt-4">
+ {% if user.is_staff %}
+ <a href="{% url 'admin:blog_post_change' object_id=post.id %}" class="btn btn-secondary btn-sm active float-right" role="button" aria-pressed="true">edit</a>
+ {% endif %}
  <h1 class="font-weight-bold">{{ post.title }}</h1>
+ 
  <div class="span">
      <h6 class="font-weight-bold">Written by {{ post.author.get_full_name }}</h6>
      <p class="text-secondary ">{{ post.created_on | date:"l M j" }}</p>
