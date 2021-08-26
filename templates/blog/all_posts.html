@@ -13,7 +13,7 @@
                 <a href= "{{ post.get_absolute_url }}" class="text-dark"><h3 class="card-title font-weight-bold">{{ post.title }}</h3></a>
                 <p class="card-text">{{ post.short_description | safe }}</p>
                 <p class="card-text"><small class="text-dark">Posted {{ post.created_on | date:"j M" }}</small></p>
-                
+                <img src="{{ post.category.image_svg.url }}" title="Категория: {{ post.category.name }}" rel="tooltip" class="svg_small float-left">
                 <p class="float-right text-muted"><img src="{% static 'blog/svg/eye.svg' %}"> {{ post.views }} </p>
               </div>
               

@@ -7,6 +7,10 @@ img.emoji {
   pointer-events: none; 
 }
 
+img.svg_small {
+  width: 1.5em;
+}
+
 p {
   color: #718096;
 }
