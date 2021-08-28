@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'levlog.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', 'postgresql://levlog:levlog@localhost:5432/levlog')
+    'default': env.db('DATABASE_URL')
 }
 
 

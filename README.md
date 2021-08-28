@@ -1,16 +1,26 @@
-Lev blog 
+My blog 
 ===
+### Currently avaliable on [levlog.ru](https://levlog.ru/)
 
-1. Env
+## Run localy
+1. Configure .env file
 
-```
-export $(grep -v '^#' .env | xargs)
-```
-
-
-2. DB
+2. Run database
 
 ```
 docker-compose up -d
-docker exec -it levlog_db_1 psql postgresql://levlog:levlog@localhost:5432/levlog
+```
+
+3. Requirement
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+4. Run server
+
+```
+python manage.py runserser
 ```

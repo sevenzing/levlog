@@ -63,7 +63,6 @@ class Post(models.Model):
         blank=True,
     )
 
-
     objects = PostManager()
     avaliable_objects = AvaliablePostManager()
 
