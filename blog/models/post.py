@@ -36,7 +36,7 @@ class Post(models.Model):
     )
     
     preview_image = StdImageField(
-        upload_to='uploads/%Y/%m/%d/', 
+        upload_to='uploads/%Y/%m/%d/',
         null=True,
         variations={
             'cropped': {'width': 1000, 'height': 400, 'crop': True},
