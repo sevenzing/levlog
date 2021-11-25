@@ -48,7 +48,7 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True, verbose_name=_('last update'))
     
     short_description = HTMLField(verbose_name=_('short'), null=True)
-    emoji_description = models.CharField(max_length=10, verbose_name=_('emoji'), null=True)
+    emoji_description = models.CharField(max_length=256, verbose_name=_('emoji'), null=True)
     content = HTMLField(verbose_name=_('content'))
 
     created_on = models.DateTimeField(auto_now_add=True, verbose_name=_('creation time'))
