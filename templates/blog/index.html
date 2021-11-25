@@ -6,9 +6,9 @@
 
 <div class="head-section">
     <div class="container">
-     <div class="row p-5">
-         <div class="col align-self-center">
-             <h1 class="font-weight-bold">Мой блог 🔎</h1>
+     <div class="{% if request.user_agent.is_mobile %}column{% else %}row{% endif %} p-5">
+         <div class="col align-self-center" style="padding-left: 0px; padding-right: 0px;">
+             <h1 class="font-weight-bold">Мой блог🔎</h1>
              <h2 class="text-secondary font-weight-lighter">и немного мемов</h2>
          </div>
          <div class="col align-self-center">

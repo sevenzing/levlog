@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'stdimage',
     'tinymce',
+    'django_user_agents',
     'blog',
 ]
 
@@ -72,7 +73,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+USER_AGENTS_CACHE = None
 
 ROOT_URLCONF = 'levlog.urls'
 
