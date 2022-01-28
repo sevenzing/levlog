@@ -6,3 +6,18 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
+
+    fieldsets = (
+        ('Meta fields', {
+            'fields': (
+                'title', 'slug', 'category', 
+                'status', 'author', 'created_on', 
+                'updated_on', 'rating',
+            )
+        }),
+        ('Content fields', {
+            'fields': (
+                'preview_image', 'emoji_description', 
+                'short_description', 'content'),
+        }),
+    )
