@@ -51,7 +51,7 @@ class Post(models.Model):
     emoji_description = models.CharField(max_length=256, verbose_name=_('emoji'), null=True)
     content = HTMLField(verbose_name=_('content'))
 
-    created_on = models.DateTimeField(auto_now_add=True, verbose_name=_('creation time'))
+    created_on = models.DateTimeField(verbose_name=_('creation time'))
     status = models.IntegerField(choices=Status.choices, default=Status.DRAFT, verbose_name=_('status'))
     
     rating = models.IntegerField(default=1, verbose_name=_('rating'))
