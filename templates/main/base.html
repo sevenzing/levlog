@@ -9,8 +9,8 @@
 
     <!-- Meta info -->
     {% if post %}
-      <meta name="title" content="{{ post.title }} &amp; CSS">
-      <meta name="description" content="{{ post.short_description }}">
+      <meta name="title" content="{{ post.title }}">
+      <meta name="description" content="{{ post.short_description | striptags }}">
       {% if post.keywords %} <meta name="keywords" content="{{ post.keywords }}"> {% endif %}
       <meta property="og:image" content="{{ post.preview_image.small.url }}">
     {% endif  %}
