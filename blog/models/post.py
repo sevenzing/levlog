@@ -62,6 +62,7 @@ class Post(models.Model):
         null=True,
         blank=True,
     )
+    keywords = models.TextField(verbose_name=_('keywords'), default='')
 
     objects = PostManager()
     avaliable_objects = AvaliablePostManager()

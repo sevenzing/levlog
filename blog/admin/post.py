@@ -10,8 +10,8 @@ class PostAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Meta fields', {
             'fields': (
-                'title', 'slug', 'category',
-                'status', 'author', 'created_on', 'rating',
+                'title', 'slug', 'category', 'status',
+                'author', 'created_on', 'rating', 'keywords',
             )
         }),
         ('Content fields', {

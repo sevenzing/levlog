@@ -7,13 +7,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Meta info -->
+    {% if post %}
+      <meta name="title" content="{{ post.title }} &amp; CSS">
+      <meta name="description" content="{{ post.short_description }}">
+      {% if post.keywords %} <meta name="keywords" content="{{ post.keywords }}"> {% endif %}
+      <meta property="og:image" content="{{ post.preview_image.small.url }}">
+    {% endif  %}
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.4.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" href="{% static 'main/favicon.ico'%}"  type="image/icon type">
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-    <title>levlog</title>
+    <title>
+      {% if post %}
+        {{post.title}}
+      {% else %}
+        LevLog
+      {% endif %}
+    </title>
 
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 
